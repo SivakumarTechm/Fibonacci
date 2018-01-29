@@ -5,3 +5,9 @@ install:
 script:
 - xbuild ./Fibonacci/Fibonacci.sln
 - mono ./Fibonacci/packages/xunit.runner.console*/tools/xunit.console.exe ./Fibonacci/Fibonacci.Tests/bin/Debug/Fibonacci.Tests.dll
+after_success:
+deploy:
+  provider: script
+  script: "./Fibonacci/deploy.sh"
+  on:
+    branch: master
